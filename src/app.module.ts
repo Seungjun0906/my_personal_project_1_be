@@ -4,18 +4,27 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { CatsController } from './cats/cats.controller';
-import { Telegram } from './telegram/telegram';
-import { TelegramModuleModule } from './telegram.module/telegram.module.module';
-import { TelegramModule } from './telegram/telegram.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+// console.log(`./configs/env/.${process.env.NODE_ENV}.env`);
 
 @Module({
   imports: [
     ScheduleModule.forRoot(),
-    ConfigModule.forRoot(),
-    TelegramModuleModule,
-    TelegramModule,
+    ConfigModule.forRoot({
+      envFilePath: `../configs/env/.${process.env.NODE_ENV}.env`,
+    }),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: process.env.DB_HOST,
+      port: 3306,
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      migrations: ['migrations/*{.ts,.js'],
+    }),
   ],
   controllers: [AppController, CatsController],
-  providers: [AppService, Telegram],
+  providers: [AppService],
 })
 export class AppModule {}
