@@ -6,13 +6,11 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { CatsController } from './cats/cats.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-// console.log(`./configs/env/.${process.env.NODE_ENV}.env`);
-
 @Module({
   imports: [
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
-      envFilePath: `../configs/env/.${process.env.NODE_ENV}.env`,
+      envFilePath: `${__dirname}/configs/env/.${process.env.NODE_ENV}.env`,
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
