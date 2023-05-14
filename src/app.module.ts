@@ -3,8 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ScheduleModule } from '@nestjs/schedule';
-import { CatsController } from './cats/cats.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ChatGptModule } from './chat-gpt/chat-gpt.module';
 
 @Module({
   imports: [
@@ -21,8 +21,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: process.env.DB_NAME,
       migrations: ['migrations/*{.ts,.js'],
     }),
+    ChatGptModule,
   ],
-  controllers: [AppController, CatsController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

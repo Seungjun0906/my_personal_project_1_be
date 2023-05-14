@@ -6,8 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "deploy": "npm i --force && npm run build && npx pm2 start dist/main.js",
-    "redeploy": "npm i --force && npm run build && npx pm2 reload all",
+    "deploy": "npm i --force && npm run build && cross-env NODE_ENV=production npx pm2 start dist/main.js",
+    "redeploy": "npm i --force && npm run build && NODE_ENV=production npx pm2 reload all",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -26,16 +26,20 @@
     "db:migration:create": "typeorm-ts-node-esm migration:create"
   },
   "dependencies": {
+    "@nestjs/axios": "^2.0.0",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.1",
     "@nestjs/core": "^9.0.0",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/schedule": "^2.2.1",
     "@nestjs/typeorm": "^9.0.1",
+    "axios": "^1.4.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "mysql2": "^3.2.0",
     "node-telegram-bot-api": "^0.61.0",
+    "openai": "^3.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
     "typeorm": "^0.3.14"
