@@ -1,13 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import axios, { AxiosResponse } from 'axios';
 import { HttpService } from '@nestjs/axios';
-import { Observable } from 'rxjs';
-import {
-  Configuration,
-  OpenAIApi,
-  CreateCompletionResponse,
-  CreateChatCompletionRequest,
-} from 'openai';
+import { Configuration, OpenAIApi, CreateChatCompletionRequest } from 'openai';
 import { GenerateResponseDto } from './dto/generateResponse.dto';
 
 @Injectable()

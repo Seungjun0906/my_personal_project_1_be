@@ -1,0 +1,7 @@
+export const PROVIDE_KEYWORD_CONSTANTS = {
+  FILE: 'FILE_REPOSITORY',
+};
+
+export const INJECT_KEYWORD_CONSTANTS = {
+  FILE: 'DATA_SOURCE',
+};

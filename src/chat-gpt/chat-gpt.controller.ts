@@ -1,7 +1,5 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ChatGptService } from './chat-gpt.service';
-import { AxiosResponse } from 'axios';
-import { map } from 'rxjs/operators';
 import { GenerateResponseDto } from './dto/generateResponse.dto';
 
 @Controller('chat-gpt')

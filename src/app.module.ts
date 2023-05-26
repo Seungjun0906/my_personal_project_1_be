@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChatGptModule } from './chat-gpt/chat-gpt.module';
+import { FileModule } from './file/file.module';
+import { DataSource } from 'typeorm';
 
 @Module({
   imports: [
@@ -19,11 +21,16 @@ import { ChatGptModule } from './chat-gpt/chat-gpt.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      migrations: ['migrations/*{.ts,.js'],
+      migrations: ['migrations/*{.ts,.js}'],
+      entities: ['src/**/entities/*{.ts,.js}'],
+      synchronize: true,
     }),
     ChatGptModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+}
